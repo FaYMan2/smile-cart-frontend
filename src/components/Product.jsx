@@ -12,8 +12,11 @@ const Product = () => {
 
   const fetchProduct = async () => {
     try {
-      const response = await productsApi.fetchProducts("infinix-inbook-2");
-      setProduct(response.data);
+      const productDetails = await productsApi.fetchProducts(
+        "infinix-inbook-2"
+      );
+      console.log(productDetails);
+      setProduct(productDetails);
     } catch (error) {
       console.error("Failed to fetch product:", error);
     } finally {
@@ -25,14 +28,7 @@ const Product = () => {
     fetchProduct();
   }, []);
 
-  const {
-    name,
-    description,
-    mrp,
-    offer_price: offerPrice,
-    image_url: imageUrl,
-    image_urls: imageUrls,
-  } = product;
+  const { name, description, mrp, offerPrice, imageUrls, imageUrl } = product;
 
   const totalDiscounts = mrp - offerPrice;
   const discountPercentage = ((totalDiscounts / mrp) * 100).toFixed(1);

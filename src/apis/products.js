@@ -1,8 +1,6 @@
 import axios from "axios";
 
-import { API_BASE_URL } from "./constant";
-
-const fetchProducts = slug => axios.get(`${API_BASE_URL}/products/${slug}`);
+const fetchProducts = slug => axios.get(`products/${slug}`);
 
 const productsApi = { fetchProducts };
 
