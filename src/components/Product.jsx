@@ -1,7 +1,11 @@
+import { Typography } from "neetoui";
+
 const Product = () => (
   <div className="px-6 pb-6">
     <div>
-      <p className="py-2 text-4xl font-semibold">Infinix INBOOK</p>
+      <Typography className="py-2 text-4xl font-semibold" style="h1">
+        Infinix INBOOK
+      </Typography>
       <hr className="border-2 border-black" />
     </div>
     <div className="mt-6 flex gap-4">
