@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
+import productsApi from "apis/products";
 import { Spinner, Typography } from "neetoui";
 import { append, isNotNil } from "ramda";
-import { fetchProducts } from "src/services/product";
 
 import Carousel from "./Carousel";
 
@@ -12,8 +12,8 @@ const Product = () => {
 
   const fetchProduct = async () => {
     try {
-      const infinixInbook = await fetchProducts("infinix-inbook-2");
-      setProduct(infinixInbook);
+      const response = await productsApi.fetchProducts("infinix-inbook-2");
+      setProduct(response.data);
     } catch (error) {
       console.error("Failed to fetch product:", error);
     } finally {
