@@ -2,8 +2,7 @@ import { useRef } from "react";
 
 import { VALID_COUNT_REGEX } from "components/constants";
 import useSelectedQuantity from "components/hooks/useSelectedQuantity";
-import { Button, Input } from "neetoui";
-import { toast } from "react-toastify";
+import { Button, Input, Toastr } from "neetoui";
 
 import TooltipWrapper from "./TooltipWrapper";
 
@@ -22,7 +21,7 @@ const ProductQuantity = ({ availableQuantity, slug }) => {
     const isNotValidInputQuantity = parseInt(value) > availableQuantity;
 
     if (isNotValidInputQuantity) {
-      toast.error(`Only ${availableQuantity} units are available`, {
+      Toastr.error(`Only ${availableQuantity} units are available`, {
         autoClose: 2000,
       });
       setSelectedQuantity(availableQuantity);
