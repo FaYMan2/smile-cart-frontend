@@ -1,0 +1,75 @@
+import { useRef } from "react";
+
+import { VALID_COUNT_REGEX } from "components/constants";
+import useSelectedQuantity from "components/hooks/useSelectedQuantity";
+import { Button, Input } from "neetoui";
+import { toast } from "react-toastify";
+
+import TooltipWrapper from "./TooltipWrapper";
+
+const ProductQuantity = ({ availableQuantity, slug }) => {
+  const [selectedQuantity, setSelectedQuantity] = useSelectedQuantity(slug);
+  const isNotValidQuantity = selectedQuantity >= availableQuantity;
+  const inputRef = useRef();
+
+  const preventNavigation = e => {
+    e.stopPropagation();
+    e.preventDefault();
+  };
+
+  const handleSetCount = event => {
+    const { value } = event.target;
+    const isNotValidInputQuantity = parseInt(value) > availableQuantity;
+
+    if (isNotValidInputQuantity) {
+      toast.error(`Only ${availableQuantity} units are available`, {
+        autoClose: 2000,
+      });
+      setSelectedQuantity(availableQuantity);
+      inputRef.current.blur();
+    } else if (VALID_COUNT_REGEX.test(value)) {
+      setSelectedQuantity(value);
+    }
+  };
+
+  return (
+    <div className="neeto-ui-border-black neeto-ui-rounded inline-flex flex-row items-center border">
+      <Button
+        className="focus-within:ring-0"
+        label="-"
+        style="text"
+        onClick={e => {
+          preventNavigation(e);
+          setSelectedQuantity(String(parseInt(selectedQuantity) - 1));
+        }}
+      />
+      <Input
+        nakedInput
+        className="ml-2"
+        contentSize="2"
+        ref={inputRef}
+        value={selectedQuantity}
+        onChange={handleSetCount}
+        onClick={preventNavigation}
+      />
+      <TooltipWrapper
+        content="Reached maximum units"
+        position="top"
+        showTooltip={isNotValidQuantity}
+      >
+        <Button
+          className="focus-within:ring-0"
+          disabled={isNotValidQuantity}
+          label="+"
+          style="text"
+          onClick={e => {
+            preventNavigation(e);
+            setSelectedQuantity(String(parseInt(selectedQuantity) + 1));
+          }}
+        />
+      </TooltipWrapper>
+    </div>
+  );
+};
+
+export default ProductQuantity;
