@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const fetchProducts = slug => axios.get(`products/${slug}`);
+const fetchProduct = slug => axios.get(`products/${slug}`);
+const fetchAllProducts = () => axios.get("products");
 
-const productsApi = { fetchProducts };
+const productsApi = { fetchProduct, fetchAllProducts };
 
 export default productsApi;
