@@ -13,4 +13,5 @@ export const useFetchProducts = params =>
   useQuery({
     queryKey: [QUERY_KEYS.PRODUCTS, params],
     queryFn: () => productsApi.fetchAllProducts(params),
+    keepPreviousData: true,
   });
