@@ -11,7 +11,10 @@
     "title": "My cart"
   },
   "product": {
-    "title": "Product"
+    "title": "Product",
+    "error": {
+      "removedFromCart": "{{name}} is no longer available and has been removed from cart"
+    }
   },
   "productList": {
     "title": "Products"
