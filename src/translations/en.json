@@ -1,8 +1,19 @@
 {
+  "title": "Smile Cart",
+  "pageTitle": "{{title}} | Smile Cart",
   "buyNow": "Buy now",
   "totalMrp": "Total MRP: <typography>${{mrp}}</typography>",
   "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
   "offerPrice": "Total offer price: <span>${{offerPrice}}</span>",
   "itemCount_one": "({{count}} item)",
-  "itemCount_other": "({{count}} items)"
+  "itemCount_other": "({{count}} items)",
+  "cart": {
+    "title": "My cart"
+  },
+  "product": {
+    "title": "Product"
+  },
+  "productList": {
+    "title": "Products"
+  }
 }
