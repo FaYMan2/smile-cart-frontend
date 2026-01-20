@@ -8,7 +8,8 @@ import TooltipWrapper from "./TooltipWrapper";
 
 const ProductQuantity = ({ availableQuantity, slug }) => {
   const [selectedQuantity, setSelectedQuantity] = useSelectedQuantity(slug);
-  const isNotValidQuantity = selectedQuantity >= availableQuantity;
+  const parsedSelectedQuantity = parseInt(selectedQuantity) || 0;
+  const isNotValidQuantity = parsedSelectedQuantity >= availableQuantity;
   const inputRef = useRef();
 
   const preventNavigation = e => {
@@ -35,11 +36,12 @@ const ProductQuantity = ({ availableQuantity, slug }) => {
     <div className="neeto-ui-border-black neeto-ui-rounded inline-flex flex-row items-center border">
       <Button
         className="focus-within:ring-0"
+        disabled={parsedSelectedQuantity === 0}
         label="-"
         style="text"
         onClick={e => {
           preventNavigation(e);
-          setSelectedQuantity(String(parseInt(selectedQuantity) - 1));
+          setSelectedQuantity(parsedSelectedQuantity - 1);
         }}
       />
       <Input
@@ -47,7 +49,7 @@ const ProductQuantity = ({ availableQuantity, slug }) => {
         className="ml-2"
         contentSize="2"
         ref={inputRef}
-        value={selectedQuantity}
+        value={parsedSelectedQuantity}
         onChange={handleSetCount}
         onClick={preventNavigation}
       />
@@ -63,7 +65,7 @@ const ProductQuantity = ({ availableQuantity, slug }) => {
           style="text"
           onClick={e => {
             preventNavigation(e);
-            setSelectedQuantity(String(parseInt(selectedQuantity) + 1));
+            setSelectedQuantity(parsedSelectedQuantity + 1);
           }}
         />
       </TooltipWrapper>

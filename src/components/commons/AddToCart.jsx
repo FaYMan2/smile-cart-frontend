@@ -12,7 +12,7 @@ const AddToCart = ({ availableQuantity, slug }) => {
     setSelectedQuantity(1);
   };
 
-  if (isNil(selectedQuantity)) {
+  if (isNil(selectedQuantity) || parseInt(selectedQuantity) === 0) {
     return <Button label="Add to cart" size="large" onClick={handleClick} />;
   }
 
