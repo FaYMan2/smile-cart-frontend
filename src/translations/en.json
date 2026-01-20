@@ -39,5 +39,16 @@
   },
   "productList": {
     "title": "Products"
+  },
+  "validations": {
+    "emailRequired": "Email address is required",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "addressRequired": "Address is required",
+    "apartmentRequired": "Apartment is required",
+    "cityRequired": "City is required",
+    "stateRequired": "State is required",
+    "zipCodeRequired": "Zip code is required",
+    "emailInvalid": "Email address is invalid"
   }
 }
