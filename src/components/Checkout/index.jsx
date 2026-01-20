@@ -89,6 +89,8 @@ const Checkout = () => {
         initialValues: checkoutFormData || CHECKOUT_FORM_INITIAL_VALUES,
         validationSchema: CHECKOUT_FORM_VALIDATION_SCHEMA,
         onSubmit: handleSubmit,
+        validateOnBlur: true,
+        validateOnChange: true,
       }}
     >
       <div className="flex space-x-4">
