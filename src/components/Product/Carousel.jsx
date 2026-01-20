@@ -1,23 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 
 import classNames from "classnames";
+import { useShowProduct } from "hooks/reactQuery/useProductsApi";
 import { Left, Right } from "neetoicons";
 import { Button } from "neetoui";
+import { append } from "ramda";
+import { useParams } from "react-router-dom";
 
-const Carousel = ({ imageUrls, title }) => {
+const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const timerref = useRef(null);
+  const timerRef = useRef(null);
+
+  const { slug } = useParams();
+
+  const { data: { imageUrl, imageUrls: partialImageUrls, name } = {} } =
+    useShowProduct(slug);
+
+  const imageUrls = append(imageUrl, partialImageUrls);
 
   useEffect(() => {
-    timerref.current = setInterval(() => handleNext(), 3000);
+    timerRef.current = setInterval(() => handleNext(), 3000);
 
-    return () => clearInterval(timerref.current);
+    return () => clearInterval(timerRef.current);
   }, []);
 
   const resetTimer = () => {
-    if (timerref.current) {
-      clearInterval(timerref.current);
-      timerref.current = setInterval(() => handleNext(), 3000);
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = setInterval(() => handleNext(), 3000);
     }
   };
 
@@ -45,7 +55,7 @@ const Carousel = ({ imageUrls, title }) => {
           onClick={handlePrevious}
         />
         <img
-          alt={title}
+          alt={name}
           className="max-w-56 h-56 max-h-56 w-56"
           src={imageUrls[currentIndex]}
         />
