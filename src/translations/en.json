@@ -24,11 +24,15 @@
   "selectState": "Select the state",
   "zipCode": "Zip code",
   "enterZipCode": "Enter zip code",
+  "subtotal": "Subtotal <span>${{totalPrice}}</span>",
+  "totalPayablePrice": "Total Payable <span>${{totalPrice}}</span>",
+  "deliveryCharges": "Delivery charges <span>FREE</span>",
   "totalMrp": "Total MRP: <typography>${{mrp}}</typography>",
   "totalDiscounts": "Total discounts: <span>${{discounts}} ({{discountPercentage}}%)</span>",
   "offerPrice": "Total offer price: <span>${{offerPrice}}</span>",
   "itemCount_one": "({{count}} item)",
   "itemCount_other": "({{count}} items)",
+  "saveInformationForNextTime": "Save this information for next time",
   "cart": {
     "title": "My cart"
   },
